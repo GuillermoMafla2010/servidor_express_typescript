@@ -3,7 +3,7 @@ import router from "./rutas/router";
 import bodyParser = require("body-parser");
 import cors from 'cors';
 
-const server=Server._instance;
+const server=new Server();
 
 
 //bodyParser
