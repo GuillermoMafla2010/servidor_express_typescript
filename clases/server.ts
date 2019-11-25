@@ -29,6 +29,7 @@ export default class Server{
     }*/
 
 
+    //Funcion que esta pendiente de los mensajes de salida y de entrada de algun socket.
     private escucharSockets(){
         console.log("Escuchando conexiones");
 
