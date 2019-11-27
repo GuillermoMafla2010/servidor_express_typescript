@@ -27,6 +27,7 @@ class Server {
     /*public static get instance(){
         return this._instance || (this._instance=new this());
     }*/
+    //Funcion que esta pendiente de los mensajes de salida y de entrada de algun socket.
     escucharSockets() {
         console.log("Escuchando conexiones");
         this.io.on("connection", cliente => {
@@ -35,6 +36,7 @@ class Server {
             socket.mensaje(cliente, this.io);
             //Desconectar
             socket.desconectar(cliente);
+            socket.configurarUsuario(cliente, this.io);
         });
     }
     start(callback) {
