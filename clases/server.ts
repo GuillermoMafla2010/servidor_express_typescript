@@ -8,7 +8,7 @@ import * as socket from '../sockets/sockets'
 
 export default class Server{
 
-    //public static _instance:Server;
+    public static _instance:Server;
 
     public app:express.Application;
     public port: number;
@@ -24,9 +24,9 @@ export default class Server{
         this.escucharSockets();
     }
 
-    /*public static get instance(){
+    public static get instance(){
         return this._instance || (this._instance=new this());
-    }*/
+    }
 
 
     //Funcion que esta pendiente de los mensajes de salida y de entrada de algun socket.
@@ -34,7 +34,9 @@ export default class Server{
         console.log("Escuchando conexiones");
 
         this.io.on("connection",cliente=>{
-            console.log("Cliente conectado");
+           //Conectar cliente
+
+           socket.conectarCliente(cliente)
 
 
          //Escuchando mensaje
@@ -43,6 +45,7 @@ export default class Server{
         //Desconectar
         socket.desconectar(cliente);
 
+        //Configurar Usuario
         socket.configurarUsuario(cliente , this.io);
 
        

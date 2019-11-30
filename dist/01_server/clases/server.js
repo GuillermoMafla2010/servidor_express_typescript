@@ -24,20 +24,18 @@ class Server {
         this.io = socket_io_1.default(this.httpServer);
         this.escucharSockets();
     }
-    static get instance() {
-        return this._instance || (this._instance = new this());
-    }
+    /*public static get instance(){
+        return this._instance || (this._instance=new this());
+    }*/
     //Funcion que esta pendiente de los mensajes de salida y de entrada de algun socket.
     escucharSockets() {
         console.log("Escuchando conexiones");
         this.io.on("connection", cliente => {
-            //Conectar cliente
-            socket.conectarCliente(cliente);
+            console.log("Cliente conectado");
             //Escuchando mensaje
             socket.mensaje(cliente, this.io);
             //Desconectar
             socket.desconectar(cliente);
-            //Configurar Usuario
             socket.configurarUsuario(cliente, this.io);
         });
     }
