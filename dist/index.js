@@ -7,7 +7,7 @@ const server_1 = __importDefault(require("./clases/server"));
 const router_1 = __importDefault(require("./rutas/router"));
 const bodyParser = require("body-parser");
 const cors_1 = __importDefault(require("cors"));
-const server = new server_1.default();
+const server = server_1.default.instance;
 //bodyParser
 server.app.use(bodyParser.urlencoded({ extended: true }));
 server.app.use(bodyParser.json());
