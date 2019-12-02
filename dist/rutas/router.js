@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const sockets_1 = require("./../sockets/sockets");
 const express_1 = require("express");
 const server_1 = __importDefault(require("../clases/server"));
 const router = express_1.Router();
@@ -31,6 +32,23 @@ router.post('/mensajes/:id', (req, res) => {
         cuerpo,
         de,
         id
+    });
+});
+//rest para verificar los id de los usuarios
+router.get('/usuarios', (req, res) => {
+    const server = server_1.default.instance;
+    server.io.clients((err, clientes) => {
+        if (err) {
+            return res.json({ ok: false, err });
+        }
+        res.json({ ok: true, clientes });
+    });
+});
+//Obtener los nombres de usuario
+router.get('/usuarios/detalle', (req, res) => {
+    res.json({
+        ok: true,
+        clientes: sockets_1.usuariosConectados.getLista()
     });
 });
 exports.default = router;
